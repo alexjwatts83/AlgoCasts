@@ -8,25 +8,21 @@
 function maxChar(str) {
   let cache = {};
   let n = str.length;
+  let maxCount = 0;
+  let charWithMostCounts = '';
 
   for(let i = 0; i < n; i++) {
     let c = str[i];
-    if(cache[c]) {
-      cache[c] = cache[c] + 1;
-    } else {
-      cache[c] = 1;
-    }
-  }
+    let count = cache[c] + 1 || 1;
 
-  let maxCount = 0;
-  let charWithMostCounts = '';
-  
-  for(var prop in cache) {
-    let count = cache[prop];
-    if (count > maxCount){
-      charWithMostCounts = prop;
-      maxCount = count;
+    cache[c] = count;
+
+    if (count < maxCount) {
+      continue;
     }
+    
+    maxCount = count;
+    charWithMostCounts = c;
   }
 
   return charWithMostCounts;
