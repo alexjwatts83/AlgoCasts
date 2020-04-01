@@ -11,6 +11,24 @@
 function chunk(array, size) {
   let n = array.length;
   let chunked = [];
+  let index = 0;
+  while (index < n) {
+    chunked.push([]);
+    let len = ((index + size) > n) ? n : index + size;
+    for(let i = index; i < len; i++){
+      const value = array[i];
+      chunked[chunked.length-1].push(value);
+    }
+    // console.log({chunked:chunked, index: index});
+    index += size;
+  }
+
+  return chunked;
+}
+
+function chunk2(array, size) {
+  let n = array.length;
+  let chunked = [];
   for(let i = 0; i < n; i++) {
     const value = array[i];
     // console.log({i:i,chunked:chunked});
