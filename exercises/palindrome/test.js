@@ -28,6 +28,6 @@ test('"Fish hsif" is not a palindrome', () => {
   expect(palindrome('Fish hsif')).toBeFalsy();
 });
 
-test('"pennep" a palindrome', () => {
-  expect(palindrome('pennep')).toBeTruthy();
+test('"Amore, Roma" a palindrome', () => {
+  expect(palindrome('amoreroma')).toBeTruthy();
 });
