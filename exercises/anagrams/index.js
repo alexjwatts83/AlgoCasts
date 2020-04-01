@@ -13,7 +13,17 @@ function anagrams(stringA, stringB) {
   let mappedCharsB = mapString(stringB);
   let stringAChars = [];
 
+  // get the individual characters of string A
   for(var charA in mappedCharsA) {
+    stringAChars.push(charA)
+  }
+
+  // loop through all of stringA characters and see if they
+  // 1. are contained in string b character map
+  // 2. that stringA and stringsBs character count is the same
+  // at the end of the loop delete the character from the character maps
+  for(let i = 0; i < stringAChars.length; i++) {
+    let charA = stringAChars[i];
     // if the charA is in stringB
     if (!mappedCharsB[charA]) {
       console.log(`${stringB} does not contain ${charA}`);
@@ -24,23 +34,17 @@ function anagrams(stringA, stringB) {
       console.log(`Char Count for ${charA} does not match.`);
       return false;
     }
+
+    delete mappedCharsA[charA];
+    delete mappedCharsB[charA];
   }
 
-  for(var charB in mappedCharsB) {
-    // if the charB is in stringA
-    if (!mappedCharsA[charB]) {
-      console.log(`${stringB} does not contain ${charB}`);
-      return false;
-    }
-
-    if (mappedCharsA[charB] !== mappedCharsB[charB]) {
-      console.log(`Char Count for ${charB} does not match.`);
-      return false;
-    }
-  }
-  
-
-  return true;
+  // here we have looped through all the characters in stringA and 
+  // removed all of the chars from the character map of stringA
+  // and also the matching characters in stringB. If string b character
+  // map has any remaining keys, meaning characters in B that are not in
+  // A then return false.
+  return Object.keys(mappedCharsB).length === 0;
 }
 
 function mapString(str) {
