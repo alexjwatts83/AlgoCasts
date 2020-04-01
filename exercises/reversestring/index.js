@@ -37,9 +37,14 @@ function reverseRecursive(str) {
   return reverseRecursive(sub) + c0;
 }
 
+function reverseReduce(str) {
+  return str.split('').reduce((reversed, leChar) => leChar + reversed, '');
+}
+
 var object = {
   reverse: reverse,
-  reverseRecursive: reverseRecursive
+  reverseRecursive: reverseRecursive,
+  reverseReduce: reverseReduce
 }
 
 module.exports = object;

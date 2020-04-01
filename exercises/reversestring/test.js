@@ -47,3 +47,11 @@ test('When reverseRecursive is called with undefined then error is thrown', () =
     reverse.reverseRecursive(undefined);
   }).toThrowError();
 });
+
+test('reverseReduce reverses a string', () => {
+  expect(reverse.reverseReduce('abcd')).toEqual('dcba');
+});
+
+test('reverseReduce reverses a string', () => {
+  expect(reverse.reverseReduce('  abcd')).toEqual('dcba  ');
+});
