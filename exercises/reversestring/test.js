@@ -11,3 +11,15 @@ test('Reverse reverses a string', () => {
 test('Reverse reverses a string', () => {
   expect(reverse('  abcd')).toEqual('dcba  ');
 });
+
+test('When reverse is called with null then error is thrown', () => {
+  expect(() => {
+    reverse(null);
+  }).toThrowError();
+});
+
+test('When reverse is called with undefined then error is thrown', () => {
+  expect(() => {
+    reverse(undefined);
+  }).toThrowError();
+});
