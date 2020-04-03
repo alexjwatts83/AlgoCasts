@@ -10,7 +10,24 @@
 
 let cache = {};
 function fib(n) {
-  return fibNonCached(n);
+  return fibInterative(n);
+}
+
+function fibInterative(n){
+  if (n <= 1) {
+    return n;
+  }
+  let minusOne = 1;
+  let minusTwo = 0;
+  let result = minusOne + minusTwo;
+  for (let i = 2; i <= n; i++) {
+    result = minusOne + minusTwo;
+    let temp = minusOne
+    minusOne = result;
+    minusTwo = temp;
+  }
+
+  return result;
 }
 
 function fibNonCached(n) {
