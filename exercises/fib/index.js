@@ -8,6 +8,32 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+let cache = {};
+function fib(n) {
+  return fibNonCached(n);
+}
+
+function fibNonCached(n) {
+  if (n <= 1){
+    return n;
+  }
+
+  return fib(n-1) + fib(n-2);
+}
+
+
+function fibCached(n){
+  if (cache[n] !== undefined) {
+    return cache[n];
+  }
+
+  if (n <= 1){
+    return n;
+  }
+
+  cache[n] = fib(n-1) + fib(n-2);
+  
+  return cache[n];
+}
 
 module.exports = fib;
