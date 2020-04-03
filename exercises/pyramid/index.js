@@ -20,6 +20,35 @@
 //       '#######'
 
 function pyramid(n) {
+  let colCount = (2 * n) - 1;
+  var midPoint = Math.floor(colCount / 2);
+  // console.log(`pyramid of ${n} rows and ${colCount} columns, mid ${midPoint}`);
+  pyramidRecursive(n, colCount, midPoint, 0, '', 0);
+}
+
+function pyramidRecursive(n, colCount, midPoint, row, str, col) {
+  if (row >= n) {
+    return;
+  }
+
+  if (col < colCount) {
+    let inRangeLeft = col < midPoint - row;
+    let inRangeRight = col > midPoint + row;
+
+    if (inRangeLeft || inRangeRight){
+      str += ' ';
+    } else {
+      str += '#';
+    }
+    pyramidRecursive(n, colCount, midPoint, row, str, col + 1);
+    return;
+  }
+
+  console.log(`${str}`);
+  pyramidRecursive(n, colCount, midPoint, row + 1, '', 0);
+}
+
+function pyramidInteratively(n) {
   // console.log(`pyramid => ${n}`);
   let colCount = (2 * n) - 1;
   var midPoint = Math.floor(colCount / 2);
@@ -35,23 +64,6 @@ function pyramid(n) {
       } else {
         str += '#';
       }
-    }
-    console.log(str);
-  }
-}
-
-function pyramidw(n) {
-  let colCount = (2 * n) - 1;
-  console.log(`pyramid of ${n} rows and ${colCount} columns`);
-  for(let row = 1; row <= n; row++) {
-    let str = '';
-    for(let col = 1; col <= colCount; col++) {
-      // if (col < row) {
-      //   str += '#';
-      // } else {
-      //   str += '-';
-      // }
-      str +=`[${row},${col}] `;
     }
     console.log(str);
   }
