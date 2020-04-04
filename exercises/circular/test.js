@@ -48,3 +48,16 @@ test('circular detects non-circular linked lists', () => {
 
   expect(circular(l)).toEqual(false);
 });
+
+test('circular detects circular linked lists with large number of entries', () => {
+  const l = new List();
+  let n = 50;
+  for(let i = 1; i <= n; i++) {
+    l.insertLast(i);
+  }
+  let index = Math.floor(n /2);
+  let node = l.getAt(index);
+  let nextNextNode = l.getAt(index + 2);
+  nextNextNode.next = node;
+  expect(circular(l)).toEqual(true);
+});
