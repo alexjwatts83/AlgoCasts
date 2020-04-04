@@ -44,6 +44,47 @@ class LinkedList {
   getLast() {
     return this.tail;
   }
+  clear() {
+    while(this.head.next !== null) {
+      const node = this.head.next;
+      this.head = node;
+      this.count--;
+    }
+    this.head = null;
+    this.tail = null;
+    this.count--;
+    // console.log('head', this.head);
+    // console.log('tail', this.tail);
+    // console.log('size', this .size());
+  }
+
+  removeFirst() {
+    const next = this.head.next;
+    this.head = next;
+    this.count--;
+  }
+
+  removeLast() {
+    let node = this.head;
+    let prev = null;
+
+    while(node !== null) {
+      if (node.next === null) {
+        break;
+      }
+      prev = node;
+      node = node.next;
+    }
+    
+    this.tail = prev;
+
+    if (this.tail === null) {
+      this.head = null;
+    } else {
+      this.tail.next = null;
+    }
+    this.count--;
+  }
 }
 
 module.exports = { Node, LinkedList };
