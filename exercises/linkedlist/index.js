@@ -84,102 +84,64 @@ class LinkedList {
       node = node.next;
     }
   }
+
   insertLast(value) {
     const newNode = new Node(value, null);
+
     if (this.head === null) {
       this.head = newNode;
       return;
     }
-    
-    if (this.head.next === null) {
-      this.head.next = newNode;
-      return;
-    }
-    
-    let node = this.head.next;
-    
-    while(node !== null) {
-      if (node.next === null) {
-        node.next = newNode;
-        break;
-      }
-      node = node.next;
-    }
+
+    let node = this.getLast();
+    node.next = newNode;
   }
+
   getAt(index) {
     let counter = 0;
     let node = this.head;
     
     while(node !== null) {
-      // console.log({
-      //   when: 'before',
-      //   node: node,
-      //   counter: counter,
-      //   index: index,
-      //   match: counter === index
-      // });
       if (counter === index) {
         return node;
       }
       node = node.next;
       counter++;
-      // console.log({
-      //   when: 'after',
-      //   node: node,
-      //   counter: counter,
-      //   index: index
-      // });
     }
-    // console.log('returning null', this)
+
     return null;
   }
 
   removeAt(index) {
-    if (index === 0 && this.head !== null) {
-      const pointer = this.head.next;
-      this.head = pointer;
+    if (this.head === null) {
       return;
     }
-    let counter = 0;
-    let node = this.head;
-    let prev = null;
-    while(node !== null) {
-      if (counter === index) {
-        let pointer = node.next;
-        prev.next = pointer;
-        node = pointer;
-        break;
-      }
-      prev = node;
-      node = node.next;
-      counter++;
+    if (index === 0 ) {
+      this.head = this.head.next;
+      return;
     }
+    let prev = this.getAt(index - 1);
+    if (prev === null){
+      return;
+    }
+    if (prev.next === null){
+      prev = null;
+      return;
+    }
+    prev.next = prev.next.next;
   }
 
   insertAt(value, index) {
-    const newNode = new Node(value, null);
-    if (index === 0 && this.head !== null) {
-      const pointer = this.head.next;
-      this.head = newNode;
-      this.head.next = pointer;
+    if (index === 0) {
+      this.head = new Node(value, this.head);
       return;
     }
-    let counter = 0;
-    let node = this.head;
-    let prev = null;
-    while(node !== null) {
-      if (counter === index) {
-        let pointer = node.next;
-        prev.next = newNode;
-        node = newNode;
-        node.next = pointer;
-        break;
-      }
-      prev = node;
-      node = node.next;
-      counter++;
-    }
+
+    let prev = this.getAt(index - 1) || this.getLast();
+    const node = new Node(value, prev.next);
+    prev.next = node;
   }
+  
   forEach() {
     return this.head
   }
