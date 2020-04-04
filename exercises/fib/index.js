@@ -9,9 +9,6 @@
 //   fib(4) === 3
 
 let cache = {};
-function fib(n) {
-  return fibInterative(n);
-}
 
 function memoize(fn) {
   let leCache = {};
@@ -64,4 +61,6 @@ function fibCached(n){
   return cache[n];
 }
 
-module.exports = memoize(fibNonCached);
+const fib = memoize(fibNonCached);
+
+module.exports = fib;
