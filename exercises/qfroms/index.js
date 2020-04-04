@@ -27,31 +27,31 @@ class Queue {
     /* Remove First Entry */
 
     // Empty the first stack to get the first value
-    let first;
     while(this.stack1.peek() !== undefined) {
-      first = this.stack1.pop();
-      this.stack2.push(first);
+      this.stack2.push(this.stack1.pop());
     }
 
+    // Pop from stack2 to get the first value entered
+    let first = this.stack2.pop();
+    
     // re-add the values back into the first stack
-    // except for the first value
     while(this.stack2.peek() !== undefined) {
-      let value = this.stack2.pop();
-      if (value !== first) {
-        this.stack1.push(value);
-      }
+      this.stack1.push(this.stack2.pop());
     }
+
     return first;
   }
   peek() {
     /* view First Entry */
 
     // Empty the first stack to get the first value
-    let first;
     while(this.stack1.peek() !== undefined) {
-      first = this.stack1.pop();
-      this.stack2.push(first);
+      this.stack2.push(this.stack1.pop());
     }
+
+    // peek at the last entered value to get the first entered
+    // in from stack1
+    let first = this.stack2.peek();
     
     // re-add the values back into the first stack
     while(this.stack2.peek() !== undefined) {
