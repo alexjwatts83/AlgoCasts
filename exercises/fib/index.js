@@ -13,6 +13,17 @@ function fib(n) {
   return fibInterative(n);
 }
 
+function memoize(fn) {
+  let leCache = {};
+  return function(...args) {
+    if (leCache[args] !== undefined) {
+      return leCache[args];
+    }
+    leCache[args] = fn.apply(this, args);
+    return leCache[args];
+  }
+}
+
 function fibInterative(n){
   if (n <= 1) {
     return n;
@@ -53,4 +64,4 @@ function fibCached(n){
   return cache[n];
 }
 
-module.exports = fib;
+module.exports = memoize(fibNonCached);
