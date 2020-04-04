@@ -170,6 +170,31 @@ class LinkedList {
       counter++;
     }
   }
+
+  insertAt(value, index) {
+    const newNode = new Node(value, null);
+    if (index === 0 && this.head !== null) {
+      const pointer = this.head.next;
+      this.head = newNode;
+      this.head.next = pointer;
+      return;
+    }
+    let counter = 0;
+    let node = this.head;
+    let prev = null;
+    while(node !== null) {
+      if (counter === index) {
+        let pointer = node.next;
+        prev.next = newNode;
+        node = newNode;
+        node.next = pointer;
+        break;
+      }
+      prev = node;
+      node = node.next;
+      counter++;
+    }
+  }
 }
 
 module.exports = { Node, LinkedList };
