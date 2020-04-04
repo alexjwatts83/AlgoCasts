@@ -13,30 +13,31 @@ class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
-    this.count = 0;
+    // this.count = 0;
   }
 
   insertFirst(value) {
     const node = new Node(value, null);
     if (this.head === null) {
-      // console.log(`Adding '${value}' to head and tail`);
       this.head = node;
       this.tail = node;
-      this.count++;
-      // console.log(this.data);
+      // this.count++;
       return;
     }
-    // console.log(`replacing head with '${value}'`);
+
     const placeHolder = this.head;
-    // console.log('before', node);
     node.next = placeHolder;
-    // console.log('after', node);
     this.head = node;
-    // console.log(this.data);
-    this.count++;
+    // this.count++;
   }
   size() {
-    return this.count;
+    let count = 0;
+    let node = this.head;
+    while(node !== null) {
+      node = node.next;
+      count++;
+    }
+    return count;
   }
   getFirst() {
     return this.head;
@@ -52,18 +53,13 @@ class LinkedList {
     }
     this.head = null;
     this.tail = null;
-    this.count--;
-    // console.log('head', this.head);
-    // console.log('tail', this.tail);
-    // console.log('size', this .size());
+    // this.count--;
   }
-
   removeFirst() {
     const next = this.head.next;
     this.head = next;
-    this.count--;
+    // this.count--;
   }
-
   removeLast() {
     let node = this.head;
     let prev = null;
@@ -83,8 +79,67 @@ class LinkedList {
     } else {
       this.tail.next = null;
     }
-    this.count--;
+    // this.count--;
   }
+  insertLast(value) {
+    const newNode = new Node(value, null);
+
+    let lastNode = this.head;
+    let secondLastNode = null;
+
+    while(lastNode !== null) {
+      if (lastNode.next === null) {
+        break;
+      }
+      secondLastNode = lastNode;
+      lastNode = lastNode.next;
+    }
+  
+    if (secondLastNode === null) {
+      if (this.head === null) {
+        this.head = newNode;
+      }
+      this.tail = newNode;
+    } else {
+      secondLastNode = lastNode;
+      this.tail = newNode;
+    }
+    // this.count++;
+    // console.log({
+    //   value: value,
+    //   secondLastNode: secondLastNode,
+    //   lastNode: lastNode,
+    //   this: this
+    // });
+  }
+  // getAt(index) {
+  //   let counter = 0;
+  //   let node = this.head;
+    
+  //   while(node !== null) {
+  //     console.log({
+  //       when: 'before',
+  //       node: node,
+  //       counter: counter,
+  //       index: index,
+  //       match: counter === index
+  //     });
+  //     if (counter === index) {
+  //       return node;
+  //     }
+  //     node = node.next;
+  //     counter++;
+  //     console.log({
+  //       when: 'after',
+  //       node: node,
+  //       counter: counter,
+  //       index: index
+  //     });
+  //   }
+    
+  //   console.log('returning null', this)
+  //   return null;
+  // }
 }
 
 module.exports = { Node, LinkedList };
