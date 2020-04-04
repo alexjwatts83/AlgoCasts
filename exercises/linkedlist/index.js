@@ -141,9 +141,24 @@ class LinkedList {
     const node = new Node(value, prev.next);
     prev.next = node;
   }
-  
-  forEach() {
-    return this.head
+
+  forEach(fn) {
+    let node = this.head;
+    let index = 0;
+    while(node !== null) {
+      fn(node, index);
+      node = node.next;
+      index++;
+    }
+  }
+
+  // for loop
+  *[Symbol.iterator]() {
+    let node = this.head;
+    while(node !== null) {
+      yield node
+      node = node.next;
+    }
   }
 }
 
