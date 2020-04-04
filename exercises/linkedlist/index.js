@@ -121,34 +121,34 @@ class LinkedList {
       // console.log({head: this.head,tail: this.tail});
     }
   }
-  // getAt(index) {
-  //   let counter = 0;
-  //   let node = this.head;
+  getAt(index) {
+    let counter = 0;
+    let node = this.head;
     
-  //   while(node !== null) {
-  //     console.log({
-  //       when: 'before',
-  //       node: node,
-  //       counter: counter,
-  //       index: index,
-  //       match: counter === index
-  //     });
-  //     if (counter === index) {
-  //       return node;
-  //     }
-  //     node = node.next;
-  //     counter++;
-  //     console.log({
-  //       when: 'after',
-  //       node: node,
-  //       counter: counter,
-  //       index: index
-  //     });
-  //   }
+    while(node !== null) {
+      // console.log({
+      //   when: 'before',
+      //   node: node,
+      //   counter: counter,
+      //   index: index,
+      //   match: counter === index
+      // });
+      if (counter === index) {
+        return node;
+      }
+      node = node.next;
+      counter++;
+      // console.log({
+      //   when: 'after',
+      //   node: node,
+      //   counter: counter,
+      //   index: index
+      // });
+    }
     
-  //   console.log('returning null', this)
-  //   return null;
-  // }
+    // console.log('returning null', this)
+    return null;
+  }
 }
 
 module.exports = { Node, LinkedList };
