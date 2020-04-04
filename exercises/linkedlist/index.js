@@ -95,22 +95,31 @@ class LinkedList {
       lastNode = lastNode.next;
     }
   
-    if (secondLastNode === null) {
-      if (this.head === null) {
-        this.head = newNode;
-      }
-      this.tail = newNode;
-    } else {
-      secondLastNode = lastNode;
-      this.tail = newNode;
-    }
-    // this.count++;
     // console.log({
     //   value: value,
     //   secondLastNode: secondLastNode,
     //   lastNode: lastNode,
-    //   this: this
+    //   this: this,
+    //   size: this.size()
     // });
+
+    if (secondLastNode === null) {
+      if (this.head === null) {
+        // console.log('head is null');
+        this.head = newNode;
+      } else {
+        // console.log('head is not null, setting next');
+        this.head.next = newNode;
+      }
+      this.tail = newNode;
+      // console.log({head: this.head,tail: this.tail});
+    } else {
+      // console.log('secondLastNode !== null');
+      secondLastNode = lastNode;
+      secondLastNode.next = newNode;
+      this.tail = newNode;
+      // console.log({head: this.head,tail: this.tail});
+    }
   }
   // getAt(index) {
   //   let counter = 0;

@@ -138,41 +138,60 @@ describe('RemoveLast', () => {
 describe('InsertLast', () => {
   test('adds to the end of the list', () => {
     const l = new List();
-    l.insertFirst('a');
+    l.insertFirst('1a');
 
-    l.insertLast('b');
-
-    expect(l.size()).toEqual(2);
-    expect(l.getLast().data).toEqual('b');
-  });
-
-  test('adds to the end of the list 2', () => {
-    const l = new List();
-    l.insertFirst('a');
-
-    l.insertLast('b');
+    l.insertLast('1b');
 
     expect(l.size()).toEqual(2);
-    expect(l.getLast().data).toEqual('b');
-
-    l.insertLast('c');
-
-    expect(l.size()).toEqual(3);
-    expect(l.getLast().data).toEqual('c');
-
-    l.insertLast('d');
-
-    expect(l.size()).toEqual(4);
-    expect(l.getLast().data).toEqual('d');
+    expect(l.getLast().data).toEqual('1b');
   });
 
-  test('insert last when empty', () => {
+  test('adds to the end of the list multiple times', () => {
     const l = new List();
-
-    l.insertLast('b');
+    l.insertFirst('2a');
 
     expect(l.size()).toEqual(1);
-    expect(l.getLast().data).toEqual('b');
+    expect(l.getLast().data).toEqual('2a');
+
+    l.insertLast('2b');
+
+    expect(l.size()).toEqual(2);
+    expect(l.getLast().data).toEqual('2b');
+
+    l.insertLast('2c');
+
+    expect(l.size()).toEqual(3);
+    expect(l.getLast().data).toEqual('2c');
+
+    l.insertLast('2d');
+
+    expect(l.size()).toEqual(4);
+    expect(l.getLast().data).toEqual('2d');
+
+    l.insertLast('2e');
+
+    expect(l.size()).toEqual(5);
+    expect(l.getLast().data).toEqual('2e');
+
+    l.insertFirst('2g');
+
+    expect(l.size()).toEqual(6);
+    expect(l.getFirst().data).toEqual('2g');
+    expect(l.getLast().data).toEqual('2e');
+  });
+
+  test('call insert last multiple times when empty', () => {
+    const l = new List();
+
+    l.insertLast('g');
+
+    expect(l.size()).toEqual(1);
+    expect(l.getLast().data).toEqual('g');
+
+    l.insertLast('h');
+
+    expect(l.size()).toEqual(2);
+    expect(l.getLast().data).toEqual('h');
   });
 });
 
