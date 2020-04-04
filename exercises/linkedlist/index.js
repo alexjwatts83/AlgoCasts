@@ -145,9 +145,30 @@ class LinkedList {
       //   index: index
       // });
     }
-    
     // console.log('returning null', this)
     return null;
+  }
+
+  removeAt(index) {
+    if (index === 0 && this.head !== null) {
+      const pointer = this.head.next;
+      this.head = pointer;
+      return;
+    }
+    let counter = 0;
+    let node = this.head;
+    let prev = null;
+    while(node !== null) {
+      if (counter === index) {
+        let pointer = node.next;
+        prev.next = pointer;
+        node = pointer;
+        break;
+      }
+      prev = node;
+      node = node.next;
+      counter++;
+    }
   }
 }
 
