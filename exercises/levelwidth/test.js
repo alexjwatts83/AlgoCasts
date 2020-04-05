@@ -25,3 +25,23 @@ test('levelWidth returns number of nodes at widest point', () => {
 
   expect(levelWidth(root)).toEqual([1, 1, 2, 1]);
 });
+
+test('levelWidth returns number of nodes at widest point', () => {
+  const root = new Node(1);
+  root.add(2);
+  root.add(2);
+  root.children[0].add(3);
+  root.children[0].add(3);
+  root.children[0].add(3);
+  root.children[0].children[0].add(4);
+  root.children[0].children[0].add(4);
+  root.children[0].children[0].add(4);
+  root.children[0].children[0].add(4);
+  root.children[0].children[0].children[0].add(5);
+  root.children[0].children[0].children[0].add(5);
+  root.children[0].children[0].children[0].add(5);
+  root.children[0].children[0].children[0].add(5);
+  root.children[0].children[0].children[0].add(5);
+
+  expect(levelWidth(root)).toEqual([1, 2, 3, 4, 5]);
+});

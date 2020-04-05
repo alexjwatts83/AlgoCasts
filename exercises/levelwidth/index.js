@@ -12,6 +12,28 @@
 // Answer: [1, 3, 2]
 
 function levelWidth(root) {
+  let divider = 'divide';
+  let counters = [0];
+  let nodes = [root, divider];
+  
+  
+  while(nodes.length > 1) {
+    let node = nodes.shift();
+
+    if (node === divider) {
+      counters.push(0);
+      nodes.push(divider);
+      continue;
+    }
+
+    nodes.push(...node.children);
+    counters[counters.length -1]++;
+  }
+  console.log("----------------------", counters);
+  return counters;
+}
+
+function levelWidthMe(root) {
   let counters = [];
   let nodes = [];
   let divider = 'divide';
@@ -36,7 +58,7 @@ function levelWidth(root) {
       counters.push(0);
     }
   }
-  // console.log("----------------------", counters);
+  console.log("----------------------", counters);
   return counters;
 }
 
