@@ -33,18 +33,16 @@ class Node {
     }
     return null;
   }
-  
+
   contains(value) {
-    let node = this;
-    while(node !== null) {
-      if (value === node.data) {
-        return node;
-      }
-      if (value < node.data) {
-        node = node.left;
-      } else {
-        node = node.right;
-      }
+    if (this.data === value) {
+      return this;
+    }
+    if (value < this.data && this.left) {
+      return this.left.contains(value);
+    }
+    if (value > this.data && this.right) {
+      return this.right.contains(value);
     }
     return null;
   }
