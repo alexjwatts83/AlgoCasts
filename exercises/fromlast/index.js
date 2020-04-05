@@ -11,6 +11,21 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+function fromLast(list, n) {
+  let slowPointer = list.head;
+  let fastPointer = list.head;
+  // console.log({n: n, slowPointer: slowPointer.data, fastPointer:fastPointer.data});
+  for(let i = 0; i < n; i++){
+    // console.log({i: i, fastPointer:fastPointer.data});
+    fastPointer = fastPointer.next;
+  }
+  // console.log({n: n, slowPointer: slowPointer.data, fastPointer:fastPointer.data});
+  while(fastPointer !== null && fastPointer.next !== null) {
+    fastPointer = fastPointer.next;
+    slowPointer = slowPointer.next;
+  }
+  // console.log({n: n, slowPointer: slowPointer, fastPointer:fastPointer});
+  return slowPointer;
+}
 
 module.exports = fromLast;

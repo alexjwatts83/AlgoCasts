@@ -7,14 +7,28 @@ test('fromLast is a function', () => {
   expect(typeof fromLast).toEqual('function');
 });
 
-test('fromLast returns the node n elements from the end', () => {
-  const l = new List();
+const l = new List();
+const testData = [
+  // [0, l, 'e'],
+  // [1, l, 'd'],
+  // [2, l, 'c'],
+  // [3, l, 'b'],
+  // [4, l, 'a'],
+];
 
-  l.insertLast('a');
-  l.insertLast('b');
-  l.insertLast('c');
-  l.insertLast('d');
-  l.insertLast('e');
+// let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+let alphabet = 'abcdefghij';
+let n = alphabet.length;
 
-  expect(fromLast(l, 3).data).toEqual('b');
+for(let i = 0; i < n; i++) {
+  let c = alphabet[i];
+  l.insertLast(c);
+  testData.push([alphabet, n - i -1, l, c]);
+}
+
+describe.each(testData)(`fromLast returns the node n elements from the end`, (alphabet, i, l, expected) => {
+  test(`when list is '${alphabet}', then index of ${i} returns '${expected}'`, () => {
+     expect(fromLast(l, i).data).toEqual(expected);
+  });
 });
+
