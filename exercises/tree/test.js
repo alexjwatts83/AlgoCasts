@@ -46,11 +46,11 @@ describe('Tree', () => {
     t.traverseBF(node => {
       letters.push(node.data);
     });
-    console.log({letters:letters});
+    // console.log({letters:letters});
     expect(letters).toEqual(['a', 'b', 'c', 'd']);
   });
 
-  test.skip('Can traverse DF', () => {
+  test('Can traverse DF', () => {
     const letters = [];
     const t = new Tree();
     t.root = new Node('a');
@@ -61,6 +61,8 @@ describe('Tree', () => {
     t.traverseDF(node => {
       letters.push(node.data);
     });
+
+    console.log({letters:letters});
 
     expect(letters).toEqual(['a', 'b', 'c', 'd']);
   });
