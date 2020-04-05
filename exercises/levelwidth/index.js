@@ -16,7 +16,6 @@ function levelWidth(root) {
   let counters = [0];
   let nodes = [root, divider];
   
-  
   while(nodes.length > 1) {
     let node = nodes.shift();
 
