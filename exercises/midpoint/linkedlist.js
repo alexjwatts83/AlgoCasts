@@ -154,6 +154,12 @@ class LinkedList {
     }
   }
 
+  fillTo(n) {
+    for(let i = 1; i <= n; i++) {
+      this.insertLast(i);
+    }
+  }
+
   forEach(fn) {
     if (!this.head) {
       return null;

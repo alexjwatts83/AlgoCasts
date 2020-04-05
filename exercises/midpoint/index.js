@@ -13,15 +13,22 @@
 //   midpoint(l); // returns { data: 'b' }
 
 function midpoint(list) {
-  let slow = list.head;
-  let fast = list.head;
+  let slowPointer = list.head;
+  let fastPointer = list.head;
 
-  while(fast.next !== null && fast.next.next !== null)  {
-    slow = slow.next;
-    fast = fast.next.next;
+  while (fastPointer != null && fastPointer.next != null) {
+    if (fastPointer.next.next == null) {
+      break;
+    }
+    if (fastPointer.next == null) {
+      slowPointer = slowPointer.next;
+      break;
+    }
+    fastPointer = fastPointer.next.next;
+    slowPointer = slowPointer.next;
   }
-
-  return slow;
+  
+  return slowPointer;
 }
 
 module.exports = midpoint;
