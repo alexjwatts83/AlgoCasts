@@ -27,13 +27,62 @@ class Node {
         const firstHalf = this.children.splice(0, i);
         const secondHalf = this.children.splice(i +1);
         this.children = [...firstHalf,...secondHalf];
-        
+
         break;
       }
     }
   }
 }
 
-class Tree {}
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+
+  traverseBF(fn) {
+    // console.log(this);
+    // console.log(fn);
+    let nodes = [];
+    let node = this.root;
+    // console.log({node:node, children: node.children});
+    while(node != null) {
+      nodes.push(node);
+      console.log('adding: ' + node.data);
+      console.log({ node:node });
+      console.log({ children: node.children});
+      let childsChildren = [];
+      let n = node.children.length;
+      for(let i = 0; i < n ; i++) {
+        let child = node.children[i];
+        console.log({ i:i,child:child });
+        if (child.children.length > 0) {
+          childsChildren.push(...child.children);
+        }
+        nodes.push(child);
+        console.log('adding child: ' + child.data);
+      }
+      console.log({ childsChildren: childsChildren});
+      node = childsChildren.shift();
+    }
+    while(nodes.length > 0) {
+      let point = nodes.shift();
+      fn(point);
+    }
+  }
+
+  traverseChildrenBFS(fn, node) {
+    let n = node.children.length;
+    if (n > 0){
+      fn(node);
+    }
+    
+    for(let i = 0; i < n ; i++) {
+      let child = node.children[i];
+      fn(child);
+      this.traverseChildrenBFS(fn, child);
+    }
+    // fn(node);
+  }
+}
 
 module.exports = { Tree, Node };
