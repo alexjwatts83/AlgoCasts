@@ -23,7 +23,6 @@ class Node {
     let node = this;
     while(true) {
       if (value < node.data) {
-        
         if (node.left === null) {
           node.left = newNode;
           return newNode;
@@ -36,10 +35,23 @@ class Node {
         }
         node = node.right
       } else {
-        // console.log('exiting because it equals the value');
         return null;
       }
     }
+  }
+  contains(value) {
+    let node = this;
+    while(node !== null) {
+      if (value === node.data) {
+        return node;
+      }
+      if (value < node.data) {
+        node = node.left;
+      } else {
+        node = node.right;
+      }
+    }
+    return null;
   }
 }
 
