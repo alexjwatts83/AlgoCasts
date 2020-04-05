@@ -61,3 +61,26 @@ test('circular detects circular linked lists with large number of entries', () =
   nextNextNode.next = node;
   expect(circular(l)).toEqual(true);
 });
+
+describe('Detects circular and does not error with large linked list size', () => {
+  test('Circular detection', () => {
+    const l = new List();
+    let n = 50;
+    for(let i = 1; i <= n; i++) {
+      l.insertLast(i);
+    }
+    let index = Math.floor(n /2) + 2;
+    let node = l.getAt(index);
+    let nextNextNode = l.getAt(index + 2);
+    nextNextNode.next = node;
+    expect(circular(l)).toEqual(true);
+  });
+  test('No circular detection', () => {
+    const l = new List();
+    let n = 50;
+    for(let i = 1; i <= n; i++) {
+      l.insertLast(i);
+    }
+    expect(circular(l)).toEqual(false);
+  });
+})
