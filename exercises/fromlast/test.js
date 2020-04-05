@@ -8,15 +8,8 @@ test('fromLast is a function', () => {
 });
 
 const l = new List();
-const testData = [
-  // [0, l, 'e'],
-  // [1, l, 'd'],
-  // [2, l, 'c'],
-  // [3, l, 'b'],
-  // [4, l, 'a'],
-];
+const testData = [];
 
-// let alphabet = 'abcdefghijklmnopqrstuvwxyz';
 let alphabet = 'abcdefghij';
 let n = alphabet.length;
 
