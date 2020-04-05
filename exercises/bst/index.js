@@ -19,26 +19,21 @@ class Node {
   }
 
   insert(value){
-    const newNode = new Node(value)
-    let node = this;
-    while(true) {
-      if (value < node.data) {
-        if (node.left === null) {
-          node.left = newNode;
-          return newNode;
-        }
-        node = node.left;
-      } else if(value > node.data) {
-        if (node.right === null) {
-          node.right = newNode;
-          return newNode;
-        }
-        node = node.right
-      } else {
-        return null;
-      }
+    if (value < this.data && this.left) {
+      this.left.insert(value);
+    } else if (value < this.data) {
+      this.left = new Node(value);
+      return this.left;
     }
+    if (value > this.data && this.right) {
+      this.right.insert(value);
+    } else if (value > this.data) {
+      this.right = new Node(value);
+      return this.right;
+    }
+    return null;
   }
+  
   contains(value) {
     let node = this;
     while(node !== null) {
