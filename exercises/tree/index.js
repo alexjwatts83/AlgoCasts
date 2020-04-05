@@ -29,8 +29,12 @@ class Tree {
   }
 
   traverseBF(fn) {
+    // this.traverseBFIterate(fn, this.root);
+    this.traverseBFSRecursive(fn, this.root);
+  }
+
+  traverseBFIterate(fn, node) {
     let nodes = [];
-    let node = this.root;
     nodes.push(node);
     while(nodes.length > 0) {
       node = nodes.shift();
@@ -40,16 +44,29 @@ class Tree {
       }
     }
   }
-
-  traverseDFS(fn, node) {
+  
+  traverseBFSRecursive(fn, node) {
     fn(node);
     for(let i = 0; i < node.children.length; i++) {
-      this.traverseDFS(fn, node.children[i]);
+      fn(node.children[i]);
+    }
+    for(let i = 0; i < node.children.length; i++) {
+      let child = node.children[i];
+      for(let j = 0; j < child.children.length; j++) {
+        this.traverseBFSRecursive(fn, child.children[j]);
+      }
+    }
+  }
+
+  traverseDFRecursive(fn, node) {
+    fn(node);
+    for(let i = 0; i < node.children.length; i++) {
+      this.traverseDFRecursive(fn, node.children[i]);
     }
   }
 
   traverseDF(fn) {
-    this.traverseDFS(fn, this.root);
+    this.traverseDFRecursive(fn, this.root);
   }
 }
 
