@@ -163,8 +163,8 @@ function selectionSort(items) {
 function mergeSort(items) {
   /*
   Def: Split an array into two arrays a divide and conquer approach.
-  Time:
-  Space:
+  Time: O(n^2), I think
+  Space: O(n)
   */
   let n = items.length;
   if (n === 1) {
@@ -182,7 +182,7 @@ function mergeSort(items) {
       rightItems.push(items[i]);
     }
   }
-  
+
   return merge(mergeSort(leftItems), mergeSort(rightItems));
 }
 
