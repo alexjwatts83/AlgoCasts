@@ -109,13 +109,13 @@ var mine = {
 }
 
 function bubbleSort(items) {
-  let n = items.length;
   /*
   Def: Bubble up the largest value one by one
   Find the largest element in an array and move it to the start of the array
   Time: Worst case O(n^2)
   Space: O(1) only thing created was the pointer
   */
+  let n = items.length;
   for(let i = 0; i < n; i++) {
     for(let j = 0; j < (n-i); j++){
       if (items[j] > items[j+1]) {
@@ -129,7 +129,36 @@ function bubbleSort(items) {
 }
 
 function selectionSort(items) {
-  return mine.selectionSort(items);
+  /*
+  Def: From the start set the min value the first item in the array, loop through all the items
+  in the array finding the lowest value. Swap the lowest value with the start. Loop again to
+  find the min but start from index 1 or the second item to the end. Swap. Continue until
+  we get to the end
+  Time: Worst case O(n^2)
+  Space: 
+  */
+  let n = items.length;
+  for(let i = 0; i < n; i++) {
+    // set the min value and index
+    let min = items[i];
+    let minIndex = i;
+    // loop from i + 1 to the end
+    for(let j = (i + 1); j < n; j++){
+      // is current value greater than min value
+      if (items[j] > min){
+        continue;
+      }
+      // set new min and minIndex
+      min = items[j];
+      minIndex = j;
+    }
+    // swap
+    let pointer = items[minIndex];
+    items[minIndex] = items[i];
+    items[i] = pointer;
+  }
+
+  return items;
 }
 
 function mergeSort(items) {
