@@ -26,10 +26,41 @@ describe('Selection sort', () => {
 
 describe('Merge sort', () => {
   test('merge function can join together two sorted arrays', () => {
+    const left = [1];
+    const right = [2];
+    expect(merge(left, right)).toEqual([1,2]);
+  });
+
+  test('merge function can join together two sorted arrays', () => {
+    const left = [1,3];
+    const right = [2];
+    expect(merge(left, right)).toEqual([1,2,3]);
+  });
+
+  test('merge function can join together two sorted arrays', () => {
+    const left = [1,3];
+    const right = [2,4];
+    expect(merge(left, right)).toEqual([1,2,3,4]);
+  });
+
+  test('merge function can join together two sorted arrays', () => {
+    const left = [1,3,5,6,7,8];
+    const right = [2,4];
+    expect(merge(left, right)).toEqual([1,2,3,4,5,6,7,8]);
+  });
+
+  test('merge function can join together two sorted arrays', () => {
     const left = [1, 10];
     const right = [2, 8, 12];
 
     expect(merge(left, right)).toEqual([1,2,8,10,12]);
+  });
+
+  test('merge function can join together two sorted arrays', () => {
+    const left = [1, 10, 14, 15];
+    const right = [2, 8, 12, 16, 19, 20];
+
+    expect(merge(left, right)).toEqual([1,2,8,10,12,14,15,16,19,20]);
   });
   
   test('sorts an array', () => {

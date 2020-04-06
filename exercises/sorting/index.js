@@ -135,38 +135,74 @@ function selectionSort(items) {
   find the min but start from index 1 or the second item to the end. Swap. Continue until
   we get to the end
   Time: Worst case O(n^2)
-  Space: 
+  Space: O(1) a few 
   */
   let n = items.length;
   for(let i = 0; i < n; i++) {
     // set the min value and index
-    let min = items[i];
     let minIndex = i;
     // loop from i + 1 to the end
     for(let j = (i + 1); j < n; j++){
-      // is current value greater than min value
-      if (items[j] > min){
+      if (items[j] > items[minIndex]){
         continue;
       }
-      // set new min and minIndex
-      min = items[j];
       minIndex = j;
     }
+    if (minIndex === i) {
+      continue;
+    }
     // swap
-    let pointer = items[minIndex];
+    let minPointer = items[minIndex];
     items[minIndex] = items[i];
-    items[i] = pointer;
+    items[i] = minPointer;
   }
 
   return items;
 }
 
 function mergeSort(items) {
-  return mine.mergeSort(items)
+  /*
+  Def: Split an array into two arrays a divide and conquer approach.
+  Time:
+  Space:
+  */
+  let n = items.length;
+  if (n === 1) {
+    return items;
+  }
+
+  let midPoint = Math.floor(n / 2);
+  const leftItems = [];
+  const rightItems = [];
+
+  for(let i = 0; i < n; i++) {
+    if (i < midPoint){
+      leftItems.push(items[i]);
+    } else {
+      rightItems.push(items[i]);
+    }
+  }
+  
+  return merge(mergeSort(leftItems), mergeSort(rightItems));
 }
 
 function merge(left, right) {
-  return mine.merge(left, right)
+  /*
+  Def: Merge two already sorted arrays together. Does assume that the arrays are
+       sorted.
+  Time: O(n log n) I think
+  Space: O(n + m), as we are creating an array based on the two arrays
+  */
+  const results = [];
+  while(left.length > 0 && right.length > 0) {
+    if (left[0] < right[0]) {
+      results.push(left.shift());
+    } else {
+      results.push(right.shift());
+    }
+  }
+  // return results and concat
+  return [...results, ...left, ...right];
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };
