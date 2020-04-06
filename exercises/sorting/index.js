@@ -109,7 +109,23 @@ var mine = {
 }
 
 function bubbleSort(items) {
-  return mine.bubbleSort(items);
+  let n = items.length;
+  /*
+  Def: Bubble up the largest value one by one
+  Find the largest element in an array and move it to the start of the array
+  Time: Worst case O(n^2)
+  Space: O(1) only thing created was the pointer
+  */
+  for(let i = 0; i < n; i++) {
+    for(let j = 0; j < (n-i); j++){
+      if (items[j] > items[j+1]) {
+        const pointer = items[j+1];
+        items[j+1] = items[j];
+        items[j] = pointer;
+      }
+    }
+  }
+  return items;
 }
 
 function selectionSort(items) {
