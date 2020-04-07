@@ -50,7 +50,7 @@ function isOneAway(s1, s2) {
     return true
   }
 
-  return undefined;
+  return false;
 }
 
 module.exports = isOneAway;

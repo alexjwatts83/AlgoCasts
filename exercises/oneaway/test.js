@@ -23,11 +23,11 @@ describe
     ['a', 'a', true],
     ['abcdef', 'abqdef', true],
     ['abcdef', 'abccef', true],
-    // ['abcdef', 'abcde', true],
+    ['abcdef', 'abcde', true],
     ['aaa', 'abc', false],
-    // ['abcde', 'abc', false],
-    // ['abc', 'abcde', false],
-    // ['abc', 'bcc', false],
+    ['abcde', 'abc', false],
+    ['abc', 'abcde', false],
+    ['abc', 'bcc', false],
   ])
     (`isOneAway does stuff`, (s1, s2, expected) => {
       test(`"${s1}" "${s2}" is ${expected}`, () => {
