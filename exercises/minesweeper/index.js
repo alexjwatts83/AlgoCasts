@@ -31,8 +31,12 @@ function mineSweeper(bombs, numRows, numCols) {
       }
     }
   }
-  console.log(field);
+  // console.log(field);
 
+  return field;
+}
+
+function click(field, numRows, numCols, givenI, givenJ) {
   return field;
 }
 
@@ -96,4 +100,7 @@ function isBombCoordinate(i, j) {
   // console.log(`res:${res}, i:${i}, j${j}`)
   return (cache[[i,j]] === undefined) ? false : true;
 }
-module.exports = mineSweeper;
+module.exports = {
+  mineSweeper: mineSweeper,
+  click: click
+}
