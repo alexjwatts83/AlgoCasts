@@ -37,6 +37,21 @@ function mineSweeper(bombs, numRows, numCols) {
 }
 
 function click(field, numRows, numCols, givenI, givenJ) {
+  console.log({
+    numRows: numRows,
+    numCols: numCols,
+    givenI: givenI,
+    givenJ: givenJ
+  });
+  field[givenI][givenJ] = -2;
+  // for(let i = 0; i < numRows; i++){
+  //   for(let j = 0; j < numCols; j++){
+  //     if (givenI === i && givenJ === j) {
+
+  //     }
+  //   } 
+  // }
+  console.log(field);
   return field;
 }
 
