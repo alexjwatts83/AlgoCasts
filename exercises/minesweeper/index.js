@@ -37,22 +37,37 @@ function mineSweeper(bombs, numRows, numCols) {
 }
 
 function click(field, numRows, numCols, givenI, givenJ) {
+  if (field[givenI][givenJ] !== 0) {
+    return field;
+  }
+  markAsBomb(field, numRows, numCols, givenI, givenJ);
+  console.log(field);
+  return field;
+}
+
+function markAsBomb(field, numRows, numCols, givenI, givenJ) {
   console.log({
     numRows: numRows,
     numCols: numCols,
     givenI: givenI,
-    givenJ: givenJ
+    givenJ: givenJ,
+    value: field[givenI][givenJ]
   });
-  field[givenI][givenJ] = -2;
-  // for(let i = 0; i < numRows; i++){
-  //   for(let j = 0; j < numCols; j++){
-  //     if (givenI === i && givenJ === j) {
 
-  //     }
-  //   } 
-  // }
-  console.log(field);
-  return field;
+  // let minusTwoAdded = [];
+  field[givenI][givenJ] = -2;
+  for(let row = givenI - 1; row <= givenI + 1; row++){
+    for(let col = givenJ - 1; col <= givenJ + 1; col++) {
+      // check if inbounds
+      let isRowInbounds = row >= 0 && row < numRows;
+      let isColInbounds = col >= 0 && col < numCols;
+      if (isRowInbounds && isColInbounds && field[row][col] === 0) {
+        field[row][col] = -2;
+        // minusTwoAdded.push([row,col]);
+        markAsBomb(field, numRows, numCols, row, col)
+      }
+    }
+  }
 }
 
 function mineSweeperCrap(bombs, numRows, numCols) {
