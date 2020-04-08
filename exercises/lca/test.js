@@ -30,7 +30,10 @@ describe
     // [buildTree(), 3, 0, null],
   ])
     (`lca does stuff`, (node, i, j, expected) => {
-      test(`"${1}" "${1}" is ${expected}`, () => {
+      console.log({
+        node: node
+      });
+      test(`"${i}" "${j}" is ${expected}`, () => {
         expect(lca(node, i, j)).toEqual(expected);
       });
 });
