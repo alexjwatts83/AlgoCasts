@@ -47,7 +47,7 @@ describe.each([
     // });
     expect(rotate(a, n)).toEqual(expected);
   });
-  test.skip(`rotate`, ()=> {
+  test(`rotateInplace`, ()=> {
     // console.log({
     //   a:a,
     //   n:n
