@@ -35,26 +35,100 @@ function buildTree() {
 //    /\
 //   6  7
 function lca(node, i, j) {
+  // console.log({
+  //   node: node,
+  //   i: i,
+  //   j: j,
+  // });
+  
+  const letNodeI = JSON.parse(JSON.stringify(node));
+  const letNodeJ = JSON.parse(JSON.stringify(node));
+  const letNode = JSON.parse(JSON.stringify(node));
+  // console.log({
+  //   letNodeI: letNodeI,
+  //   letNodeJ: letNodeJ,
+  //   letNode: letNode,
+  // });
+
+
+  // console.log('finding stack for ' + i)
+  let jStack = findNode(letNodeI, j, new Stack());
+  // console.log({
+  //   letNodeI: letNodeI,
+  //   letNodeJ: letNodeJ,
+  //   letNode: letNode,
+  // });
+  // console.log('finding stack for ' + j)
+  let iStack = findNode(letNodeJ, i, new Stack());
+  
   console.log({
-    node: node,
-    i: i,
-    j: j,
+    iStack: iStack === undefined ? [] : iStack.data,
+    jStack: jStack === undefined ? [] : jStack.data,
   });
-  let iStack = findNode(node, i, new Stack());
-  console.log({
-    iStack: iStack
-  });
+
+  console.log(`Finding common level for '${i}' and '${j}'`)
+  let common = findCommon(iStack.data, jStack.data);
+  
+  console.log(`Found common '${common}'`);
+
+  let level = 0;
+  let stack = [letNode];
+  while(stack.length > 0) {
+    let currentNode = stack.shift();
+    if (currentNode.data == common) {
+      console.log(`returning ${level} found ${common}`);
+      return level;
+    }
+    level++;
+    stack.push(...currentNode.children);
+    console.log(`incrementing level to ${level} with new children '${stack}'`);
+  }
+  return null;
+}
+function findCommon(arr1, arr2) {
+  // console.log({arr1, arr2});
+  for(let i = arr1.length - 1; i >= 0; i--) {
+    for(let j = arr2.length - 1; j >= 0; j--) {
+      // console.log(`arr1[${i}] = ${arr1[i]}; arr2[${j}] = ${arr2[j]}`);
+      if (arr1[i] === arr2[j]) {
+        // console.log(`returning ${arr1[i]}`);
+        return arr1[i];
+      }
+    }
+  }
   return null;
 }
 
 function findNode(node, value, stack) {
+  // console.log({
+  //   findNode: 'findNode',
+  //   node:node, value:value, stack:stack
+  // })
   if (node === null) {
-    return null;
-  }
-  stack.push(node);
-  if (node.data === value) {
+    // console.log('node is null returning stack');
     return stack;
   }
+  stack.push(node.data);
+  if (node.data === value) {
+    // console.log('node.data === value, returning stack');
+    return stack;
+  }
+
+  for(let i = 0; i < node.children.length; i++) {
+    let child = node.children[i];
+    // console.log({
+    //   child: child,
+    //   i: i,
+    //   stack: stack
+    // });
+    stack.push(child.data);
+    if (child.data === value) {
+      // console.log('child.data === value, returning stack');
+      return stack;
+    }
+    findNode(child, value, stack);
+  }
+  return stack;
 }
 
 module.exports = {
