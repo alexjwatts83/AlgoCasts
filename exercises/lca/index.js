@@ -31,9 +31,16 @@ function buildTree() {
 //        /   \
 //       1     4
 //      /\    / \
-//     3  8  9  2
+//     3  8  9   2
 //    /\
 //   6  7
+/*
+
+All nodes unique
+- if node is null return null
+- if i does not exist return null
+- if j does not exist return null
+*/
 function lca(node, i, j) {
   // console.log({
   //   node: node,
@@ -69,21 +76,21 @@ function lca(node, i, j) {
   console.log(`Finding common level for '${i}' and '${j}'`)
   let common = findCommon(iStack.data, jStack.data);
   
-  console.log(`Found common '${common}'`);
+  console.log(`Found common '${common}' for '${i}' and '${j}'`);
 
-  let level = 0;
-  let stack = [letNode];
-  while(stack.length > 0) {
-    let currentNode = stack.shift();
-    if (currentNode.data == common) {
-      console.log(`returning ${level} found ${common}`);
-      return level;
-    }
-    level++;
-    stack.push(...currentNode.children);
-    console.log(`incrementing level to ${level} with new children '${stack}'`);
-  }
-  return null;
+  // let level = 0;
+  // let stack = [letNode];
+  // while(stack.length > 0) {
+  //   let currentNode = stack.shift();
+  //   if (currentNode.data == common) {
+  //     console.log(`returning ${level} found ${common}`);
+  //     return level;
+  //   }
+  //   level++;
+  //   stack.push(...currentNode.children);
+  //   console.log(`incrementing level to ${level} with new children '${stack}'`);
+  // }
+  return common;
 }
 function findCommon(arr1, arr2) {
   // console.log({arr1, arr2});

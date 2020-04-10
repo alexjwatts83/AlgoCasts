@@ -41,6 +41,16 @@ function reverseReduce(str) {
   return str.split('').reduce((reversed, leChar) => leChar + reversed, '');
 }
 
+var reverseString = function(s) {
+  let mid = Math.floor(s.length /2);
+  let j = s.length - 1;
+  for(let i = 0; i < mid; i++) {
+      let pointerToJ = s[j - i];
+      s[j -i] = s[i];
+      s[i] = pointerToJ;
+  }
+};
+
 var object = {
   reverse: reverse,
   reverseRecursive: reverseRecursive,
