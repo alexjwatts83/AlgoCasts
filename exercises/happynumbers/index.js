@@ -14,29 +14,55 @@ Explanation:
 12 + 02 + 02 = 1
 
 */
-function happynumbers(n, cache = {}) {
+function happynumbers(n) {
+  // return isHappy(n);
+  return happynumbersMe(n, {});
+}
+
+function happynumbersMe(n, cache = {}) {
   if (cache[n] !== undefined) {
-    console.log({cache: cache});
+    // console.log({cache: cache});
     return false;
   }
-  console.log({n:n});
+  // console.log({n:n});
   if (n < 0) {
     return false;
   }
   let str =  n.toString();
   let len = str.length;
   let result = 0;
-  console.log({n:n, str: str, len: len});
+  // console.log({n:n, str: str, len: len});
   for (let i = 0; i < len; i++) {
     let num = Math.pow(parseInt(str[i]), 2);
     result += num;
-    console.log({i:i, num: str[i], numSq: num, result: result});
+    // console.log({i:i, num: str[i], numSq: num, result: result});
   }
   if (result == 1){
     return true;
   }
   cache[n] = false;
-  return happynumbers(result, cache);
+  return happynumbersMe(result, cache);
+}
+
+var isHappy = function(n) {
+  let x = n;
+  while(x !== 1 && x !== 7 && x !== 0){                
+      x = splitDigits(x);
+      if(x > 1 && x < 10 && x !== 7)
+          return false;
+  }
+  return true;
+};
+
+var splitDigits = function(n) {
+ let sum = 0;
+  let temp;
+  while (n >= 1) {
+      temp = n % 10;
+      sum += temp * temp;
+      n = Math.trunc(n / 10)
+ }
+  return sum
 }
 
 module.exports = happynumbers
