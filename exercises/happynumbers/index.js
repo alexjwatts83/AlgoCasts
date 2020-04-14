@@ -43,7 +43,7 @@ function happynumbersMe(n, cache = {}) {
   cache[n] = false;
   return happynumbersMe(result, cache);
 }
-
+// leetcode best answer
 var isHappy = function(n) {
   let x = n;
   while(x !== 1 && x !== 7 && x !== 0){                
