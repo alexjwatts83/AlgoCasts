@@ -10,16 +10,39 @@ Follow up:
 
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 */
-function maxSubArray(nums) {
-  return maxSubArrayMe(nums);
+function maxSubArray(nums, n) {
+  return maxSubArrayMe(nums, n);
 }
 
 /**
  * @param {number[]} nums
  * @return {number}
  */
-var maxSubArrayMe = function(nums) {
-    
+var maxSubArrayMe = function(nums, n) {
+    let count = nums.length;
+    let maxSum = null;
+    for(let i = 0; i < count; i++) {
+      let sum = nums[i];
+      for(let j = 1; j <= n - 1; j++) {
+        if ((i+j) >= nums.length){
+          break;
+        }
+        let value = nums[i+j];
+        // console.log(` i=${i};j=${j};sumPrev=${sum};sum=${sum + value};add:${value}`);
+        sum += value;
+      }
+
+      if (sum === null || sum > maxSum) {
+        maxSum = sum;
+      }
+
+      console.log({
+        i: i,
+        sum: sum,
+        maxSum: maxSum
+      });
+    }
+    return maxSum;
 };
 
 module.exports = maxSubArray;

@@ -6,11 +6,12 @@ test('maxSubArray function exists', () => {
 
 describe.each([
   [
-      [-2,1,-3,4,-1,2,1,-5,4],
-      6
+    [2,6,9,2,1,8,5,6,3],
+    3,
+    19,
   ],
-])(`maxSubArray`, (n, expected) => {
-  test(`Expect ${expected} for ${n}`, () => {
-    expect(fn(n)).toEqual(expected);
+])(`maxSubArray`, (arg1, arg2, expected) => {
+  test(`Expect ${expected} for ${arg1} and ${arg2}`, () => {
+    expect(fn(arg1, arg2)).toEqual(expected);
   });
 });
