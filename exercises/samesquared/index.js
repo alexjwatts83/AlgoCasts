@@ -1,4 +1,4 @@
-var same = function(array1, array2) {
+var samesquared = function(array1, array2) {
   // check if arrays are empty or null
   if (array1 === null || array1.length === 0) {
     return false;
@@ -61,4 +61,4 @@ function convertArrayToFrequencyObject(arr) {
   return frequencyObj;
 }
 
-module.exports = same;
+module.exports = samesquared;
