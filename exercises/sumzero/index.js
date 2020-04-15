@@ -1,23 +1,20 @@
 var sumZero = function(sortedArr) {
-  let slowPointer = null;
-  let fastPointer = null;
   let n = sortedArr.length
-  // start from the first index
-  // check the second index
-  // keep incrmenting still we get to the end
-  for(let i = 0; i < n -1; i++) {
-    slowPointer = i;
-    fastPointer = i + 1;
-
-    let slowValue = sortedArr[slowPointer];
-    
-    while(fastPointer < n) {
-      let fastValue = sortedArr[fastPointer];
-      let sum = slowValue + fastValue;
-      if (sum === 0) {
-        return [sortedArr[slowPointer], sortedArr[fastPointer]]
-      }
-      fastPointer++;
+  let leftIndex = 0;
+  let rightIndex = n -1;
+  // start from the stand and then end and move in
+  // O(n) since there is only one "loop"
+  while(leftIndex < rightIndex) {
+    let left = sortedArr[leftIndex];
+    let right = sortedArr[rightIndex];
+    let sum = left + right;
+    if (sum === 0) {
+      return [left, right]
+    }
+    if (sum > 0) {
+      rightIndex--;
+    } else {
+      leftIndex++;
     }
   }
   return undefined;
