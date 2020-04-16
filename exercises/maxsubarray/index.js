@@ -11,7 +11,26 @@ Follow up:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 */
 function maxSubArray(nums, n) {
-  return maxSubArrayMe(nums, n);
+  let sum = 0;
+  let i = 0;
+  for(i = 0; i < n; i++) {
+    sum += nums[i];
+  }
+  i = 0;
+  let j = n - 1;
+  let maxSum = sum;
+  j = n;
+  while(j < nums.length) {
+    sum -= nums[i];
+    sum += nums[j];
+    if (sum > maxSum) {
+      maxSum = sum;
+    }
+
+    i++;
+    j++;
+  }
+  return maxSum;
 }
 
 /**

@@ -9,12 +9,12 @@ var countUniqueValues = function(sortedArr) {
   let rightIndex = 1;  
   let left = sortedArr[leftIndex];
   let right = sortedArr[rightIndex];
-  
+
   // there should always be a unique element at this point
   let uniqueCount = 1;
 
   // start from 0 and 1
-  while(rightIndex < n) {
+  while(rightIndex < n) { 
     // if left and right are the same
     // set pointer to next index
     if (left === right) {
