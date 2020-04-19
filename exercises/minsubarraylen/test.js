@@ -45,3 +45,7 @@ describe.each([
     expect(fn(arg1, arg2)).toEqual(expected);
   });
 });
+
+// test(`Expect ${expected} for ${arg1} and ${arg2}`, () => {
+//   expect(fn(arg1, arg2)).toEqual(expected);
+// });

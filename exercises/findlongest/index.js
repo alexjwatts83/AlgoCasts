@@ -1,17 +1,26 @@
+/*
+https://www.youtube.com/watch?v=3IETreEybaA
+*/
 function findLongestSubstring(str) {
-  let chars = {};
+  let chars = new Map();
   let maxCount = 0;
-  let j = 0;
- 
-  for (let i = 0; i < str.length; i++) {
-    let c = str[i];
-    if (chars[c]) {
-      j = Math.max(j, chars[c]);
+  let pointerA = 0;
+  let pointerB = 0;
+  let n = str.length;
+  while(pointerB < n) {
+    let c = str[pointerB];
+    if (chars.get(c) === undefined){
+      // add in a new unqiue character
+      chars.set(c, pointerB);
+      pointerB++;
+      maxCount = Math.max(maxCount, chars.size)
+    } else {
+      // pointer b is no longer unique lets move
+      // pointer a forward one and remove from
+      // current list
+      chars.delete(str[pointerA]);
+      pointerA++;
     }
-    // index - beginning of substring + 1 (to include current in count)
-    maxCount = Math.max(maxCount, i - j + 1);
-    // store the index of the next char so as to not double count
-    chars[c] = i + 1;
   }
   return maxCount;
 }
