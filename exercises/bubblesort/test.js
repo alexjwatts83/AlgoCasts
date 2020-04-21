@@ -28,7 +28,7 @@ describe.each([
         [2,1],
         [1,2]
       ],
-    ])(`${key}=>`, (arr1, expected) => {
+    ])(`${key} =>`, (arr1, expected) => {
       test(`Expect ${expected} for ${arr1}`, () => {
         expect(mod[key](arr1)).toEqual(expected);
       });

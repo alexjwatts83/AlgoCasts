@@ -1,4 +1,5 @@
 var bubbleSortMe = function(arr) {
+  // largest value bubbles up
   let n = arr.length - 2;
   for(let i = n; i >= 0; i--){
     let wasNoSwapped = true;
@@ -17,10 +18,30 @@ var bubbleSortMe = function(arr) {
   }
   return arr;
 }
-var bubbleSortMeRefactored = function(arr) {
-  // return null
+var selectionSort = function(arr) {
+  // the smallest number gets inserted
+  let n = arr.length;
+  for(let i = 0; i < n; i++) {
+    let min = arr[i];
+    let minIndex = i;
+    for(let j = i + 1; j < n; j++) {
+      let valueAtIndexJ = arr[j];
+      if (valueAtIndexJ < min) {
+        minIndex = j;
+        min = valueAtIndexJ;
+      }
+    }
+    if (i === minIndex) {
+      continue;
+    }
+    let valueAtI = arr[i];
+    let valueAtMinIndex = arr[minIndex];
+    arr[minIndex] = valueAtI;
+    arr[i] = valueAtMinIndex;
+  }
+  return arr
 }
 module.exports = {
-  bubbleSortMe: bubbleSortMe,
-  // bubbleSortMeRefactored: bubbleSortMeRefactored
+  bubbleSort: bubbleSortMe,
+  selectionSort: selectionSort
 }
