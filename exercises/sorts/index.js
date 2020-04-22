@@ -124,11 +124,97 @@ var merge = function (left, right) {
   return [...results, ...left, ...right];
 }
 
-module.exports = {
+var pivot = function(arr, start = 0, end = arr.length - 1) {
+  // const original = [...arr];
+  let pivotValue = arr[start];
+  let swapIndex = start;
+  for(let i = start + 1; i <= end; i++) {
+    if (pivotValue > arr[i]) {
+      swapIndex++;
+      swap(arr, i, swapIndex);
+    }
+  }
+  swap(arr, start, swapIndex);
+  // console.log({original: original, arr:arr, swapIndex: swapIndex});
+  /*
+  [4,8,2,1,5,7,6,3],
+  [4,-2-,-8-,1,5,7,6,3],
+  [4,2,-1-,-8-,5,7,6,3],
+  [4,2,1,-3-,5,7,6,-8-],
+  [-3-,2,1,-4-,5,7,6,8],
+  */
+  return swapIndex;
+}
+
+var quickSort = function(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right);
+    // left
+    quickSort(arr, left, pivotIndex - 1);
+    // right
+    quickSort(arr, pivotIndex + 1, right);
+  }
+
+  return arr;
+}
+
+var getDigit = function(num, position) {
+  let numAsString = num.toString();
+  if (position >= numAsString.length) {
+    return 0;
+  }
+  return parseInt(numAsString.substr(numAsString.length - 1 - position, 1));
+}
+
+var digitCount = function(num) {
+  return num.toString().length;
+}
+
+var mostDigits = function(arr) {
+  let max = 0;
+  for(let i = 0; i < arr.length; i++) {
+    let count = digitCount(arr[i]);
+    if (count > max){
+      max = count;
+    }
+  }
+  return max;
+}
+
+var radixSort = function(arr) {
+  let maxDigitCount = mostDigits(arr);
+  for(let i = 0; i < maxDigitCount; i++) {
+    let buckets = Array.from({length: 10}, () => []);
+    for (let j = 0; j < arr.length; j++) {
+      let num = arr[j];
+      let bucketIndex = getDigit(num, i);
+      buckets[bucketIndex].push(num);
+    }
+    arr = [].concat(...buckets);
+  }
+  return arr;
+}
+
+let sorts = {
   bubbleSort: bubbleSort,
   selectionSort: selectionSort,
   insertionSortNiave: insertionSortNiave,
   insertionSort: insertionSort,
   insertionSort2: insertionSort2,
-  mergeSort: mergeSort
+  mergeSort: mergeSort,
+  quickSort: quickSort,
+  radixSort: radixSort
+};
+
+var helpers = {
+  merge: merge,
+  pivot: pivot,
+  getDigit: getDigit,
+  digitCount: digitCount,
+  mostDigits: mostDigits
+}
+
+module.exports = {
+  sorts: sorts,
+  helpers: helpers
 }
