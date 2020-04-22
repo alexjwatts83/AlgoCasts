@@ -44,11 +44,10 @@ var selectionSort = function(arr) {
 var insertionSort = function(arr) {
   // insert value in the left section until its sorted
   let n = arr.length;
-
-	let currentVal;
   for(let i = 1; i < n; i++){
-    currentVal = arr[i];
+    let currentVal = arr[i];
     let j;
+    // because the left part is already sorted
     for(j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
       arr[j+1] = arr[j]
     }
