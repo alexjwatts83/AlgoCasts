@@ -28,6 +28,10 @@ describe.each([
         [2,1],
         [1,2]
       ],
+      [
+        [12, 11, 13, 5, 6],
+        [5, 6, 11, 12, 13]
+      ],
     ])(`${key} =>`, (arr1, expected) => {
       test(`Expect ${expected} for ${arr1}`, () => {
         expect(mod[key](arr1)).toEqual(expected);

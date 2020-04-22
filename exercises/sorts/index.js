@@ -84,8 +84,44 @@ var insertionSort = function(arr) {
 
 var insertionSort2 = function(arr) {
   let n = arr.length;
-  
+  // start from 1
+  for (let i = 1; i < n; i++) {
+    // let j = i
+    let j = i;
+    // while left gt right and j gt 0
+    while(j > 0 && arr[j - 1] > arr[j]){
+      // swap left and right
+      swap(arr, j, j - 1);
+      j--;
+    }
+  }
+
   return arr;
+}
+
+var mergeSort = function(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let mid = Math.floor(arr.length / 2);
+  let left = arr.slice(0,mid);
+  let right = arr.slice(mid);
+  
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+var merge = function (left, right) {
+  const results = [];
+  // one at a time brah
+  while(left.length > 0 && right.length > 0) {
+    if (left[0] < right[0]) {
+      results.push(left.shift());
+    } else {
+      results.push(right.shift());
+    }
+  }
+  // return results and concat
+  return [...results, ...left, ...right];
 }
 
 module.exports = {
@@ -94,4 +130,5 @@ module.exports = {
   insertionSortNiave: insertionSortNiave,
   insertionSort: insertionSort,
   insertionSort2: insertionSort2,
+  mergeSort: mergeSort
 }
